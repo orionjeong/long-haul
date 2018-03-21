@@ -1,13 +1,13 @@
 ---
 layout: default
-title: About Long Haul
+title: About Orion Jeong
 ---
 
 <div class="post">
-	<h1 class="pageTitle">About Long Haul</h1>
+	<h1 class="pageTitle">About Orion Jeong</h1>
 	<img src="{{ '/assets/img/touring.jpg' | prepend: site.baseurl }}" alt="">
-	<p class="intro">Long Haul is a minimal, long form <a href="http://jekyllrb.com">Jekyll</a> Theme. It can be used as is or customized to your hearts desire.</p>
-	<p>Long Haul was created in honor of all the hard working touring bicycles that have traversed the globe time and time again. Take it for a spin.</p>
+	<p class="intro">개발을 하던 도중 부족함을 느끼고 제대로 된 공부를 하기 위해 기술 블로그 개설한 늦깍이 개발자</p>
+	<p>아주 조금이라도 하루하루 발전을 목표로 하고 있습니다.</p>
 	<h2>Features</h2>
 	<ul>
 		<li>Built with SASS + GULP + BROWSERSYNC + AUTOPREFIXER</li>
