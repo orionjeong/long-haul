@@ -2,6 +2,7 @@
 layout: post
 title:  "동행길 프로젝트"
 date:   2018-03-21
+description: 현대오토에버 장애인 헬프 앱 개발 콘테스트 후기입니다.
 ---
 
 <p class="intro"><span class="dropcap">작</span>년 7월 현대오토에버 장애인 헬프 앱 개발콘테스트에 참여하게 되었습니다.</p>
@@ -49,8 +50,8 @@ date:   2018-03-21
 
 그렇게 제작된 제 작품 동행길 입니다.
 
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/l8nAOT69Hcg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/l8nAOT69Hcg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## 결과
 

@@ -1,56 +1,87 @@
 ---
 layout: post
-title:  "Example Post Formatting"
-date:   2014-12-15
-description: This is a post description for meta purposes. This is also the excerpt of the article that shows up on the index/home page. Change this in the post YAML.
+title:  "콜백(CallBack)메서드"
+date:   2018-03-24
+description: 콜백함수를 공부하면서  정리한 내용 입니다.
 ---
 
-<p class="intro"><span class="dropcap">C</span>urabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper. Donec sed odio dui. Aenean lacinia bibendum nulla sed consectetur.</p>
+<p class="intro"><span class="dropcap">콜</span>백의 사전정의</p>
 
-# Heading 1
+>프로그래밍에서 콜백(callback)은 다른 코드의 인수로서 넘겨주는 실행 가능한 코드를 말한다.
 
-## Heading 2
 
-### Heading 3
+하지만 진짜 중요한 것은 위의 말에 포함되어있는 숨겨진 의미 ___"호출자가 실행 가능한 코드를 피호출자에게 넘겨주고 피호출자가 어떠한 상황이 되면 호출자(호출자의 실행 가능한 코드)를 호출한다"___이다.
 
-#### Heading 4
 
-##### Heading 5
+일반적인 흐름은 호출자가 피호출자를 호출하게 되기때문에 이는 일반적인 흐름과 반대되는 상황이다.
 
-###### Heading 6
 
-<blockquote>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum. Nulla vitae elit libero, a pharetra augue. Curabitur blandit tempus porttitor. Donec sed odio dui. Cras mattis consectetur purus sit amet fermentum.</blockquote>
+~~~
+public void caller(){
+	Callee.setCallee();
+}
+//호출자(caller)가 피호출자(callee)를 호출
+~~~
 
-Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+아주 쉽게 생각하면 호출자(개발자의 코드)에서 어떠한 메서드를 실행했는데 알고보니 __실행이 아니라 등록하는 행위__였다고 생각할 수 있다!!  
 
-## Unordered List
-* List Item
-* Longer List Item
-  * Nested List Item
-  * Nested Item
-* List Item
+~~~
+public void caller(){
+	CalleeClass.setCallee(new ABCD(){
+	@Override
+		실행하는 코드
+	});
+}
+//호출자(caller)가 피호출자(callee)를 호출했는데 피호출자 함수는 실행하는 코드를 등록하고 있다. 그리고 피호출자는 나중에
+상황이 맞을 때 실행하는 코드를 실행할 것이다.  
+~~~
 
-## Ordered List
-1. List Item
-2. Longer List Item
-    1. Nested OL Item
-    2. Another Nested Item
-3. List Item
 
-## Definition List
-<dl>
-  <dt>Coffee</dt>
-  <dd>Black hot drink</dd>
-  <dt>Milk</dt>
-  <dd>White cold drink</dd>
-</dl>
+예를 들어 안드로이드에서 클릭메서드는 콜백으로 되어있는데 이는 일반적으로 개발자의 코드가 안드로이드 프레임워크의 메서드를 호출하는게 아닌 안드로이드 프레임워크에서 이벤트를 감지하면 개발자의 코드 즉 호출자를 호출하는 형태로 진행이 된다.
 
-Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas faucibus mollis interdum. Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
 
-Cras justo odio, dapibus ac facilisis in, egestas eget quam. Curabitur blandit tempus porttitor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec id elit non mi porta gravida at eget metus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+# 콜백메서드 구현해보기
+~~~{.java}
+public class CallbackTest {
 
-Maecenas faucibus mollis interdum. Maecenas faucibus mollis interdum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Etiam porta sem malesuada magna mollis euismod. Vestibulum id ligula porta felis euismod semper. Cras mattis consectetur purus sit amet fermentum.
+    interface Resister{
+        public void play();
+    }
+    class Callee{
+        private Resister resister;
+        private boolean status;
 
-Sed posuere consectetur est at lobortis. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
+//        등록하는 부분
 
-Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit.
+        public void setResister(Resister resister) {
+            this.resister = resister;
+        }
+
+//        조건이 맞을 때 실행하는 부분
+        private void callBackMethodSetting(){
+            if(status && resister != null){
+                resister.play();
+            }
+        }
+    }
+    class Caller{
+        private Callee callee;
+//        callee를 호출하면서 등록하는 부분
+        public Callee setCallee(Resister r){
+            callee = new Callee();
+            callee.setResister(r);
+            return callee;
+        }
+    }
+    public static void main(String args[]){
+        CallbackTest callbackTest = new CallbackTest();
+        Caller caller = callbackTest.new Caller();
+        caller.setCallee(new Resister() {
+            @Override
+            public void play() {
+                System.out.println("피호출자가 호출자를 호출하였습니다.");
+            }
+        });
+    }
+}
+~~~
