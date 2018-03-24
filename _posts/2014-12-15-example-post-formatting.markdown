@@ -41,7 +41,9 @@ public void caller(){
 
 
 # 콜백메서드 구현해보기
-~~~{.java}
+
+
+~~~
 public class CallbackTest {
 
     interface Resister{
